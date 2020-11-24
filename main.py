@@ -3,7 +3,8 @@ import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torchvision import datasets
+import torchvision
+from torchvision import datasets, models, transforms
 from torch.autograd import Variable
 from tqdm import tqdm
 
@@ -15,9 +16,9 @@ parser.add_argument('--batch-size', type=int, default=64, metavar='B',
                     help='input batch size for training (default: 64)')
 parser.add_argument('--epochs', type=int, default=10, metavar='N',
                     help='number of epochs to train (default: 10)')
-parser.add_argument('--lr', type=float, default=0.1, metavar='LR',
+parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate (default: 0.01)')
-parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
+parser.add_argument('--momentum', type=float, default=0.9, metavar='M',
                     help='SGD momentum (default: 0.5)')
 parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
@@ -47,8 +48,14 @@ val_loader = torch.utils.data.DataLoader(
 
 # Neural network and optimizer
 # We define neural net in model.py so that it can be reused by the evaluate.py script
-from model import Net
-model = Net()
+#from model import Net
+#model = Net()
+nclasses = 20 
+model = models.squeezenet1_0(pretrained=true)
+model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
+model.num_classes = num_classes
+input_size = 224
+print(model)
 if use_cuda:
     print('Using GPU')
     model.cuda()
