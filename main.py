@@ -51,7 +51,7 @@ val_loader = torch.utils.data.DataLoader(
 #from model import Net
 #model = Net()
 nclasses = 20 
-model = models.squeezenet1_0(pretrained=true)
+model = models.squeezenet1_0(pretrained=True)
 model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
 model.num_classes = num_classes
 input_size = 224
