@@ -1,7 +1,6 @@
 import zipfile
 import os
 from model import input_size
-print("inputsize:", input_size)
 
 import torchvision.transforms as transforms
 
