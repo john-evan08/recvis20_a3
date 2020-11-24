@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
-from torchvision import datasets, models, transforms
+from torchvision import datasets
 from torch.autograd import Variable
 from tqdm import tqdm
 
@@ -48,14 +48,8 @@ val_loader = torch.utils.data.DataLoader(
 
 # Neural network and optimizer
 # We define neural net in model.py so that it can be reused by the evaluate.py script
-#from model import Net
-#model = Net()
-nclasses = 20 
-model = models.resnet152(pretrained=True)
-num_ftrs = model.fc.in_features
-model.fc = nn.Linear(num_ftrs, nclasses)
-input_size = 224
-print(model)
+
+from model import model
 if use_cuda:
     print('Using GPU')
     model.cuda()
