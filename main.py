@@ -52,8 +52,8 @@ val_loader = torch.utils.data.DataLoader(
 #model = Net()
 nclasses = 20 
 model = models.squeezenet1_0(pretrained=True)
-model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
-model.num_classes = num_classes
+model.classifier[1] = nn.Conv2d(512, nclasses, kernel_size=(1,1), stride=(1,1))
+model.nclasses = nclasses
 input_size = 224
 print(model)
 if use_cuda:
